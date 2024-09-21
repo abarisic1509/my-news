@@ -3,6 +3,7 @@ import { MainWrapper } from "../ui/wrappers";
 import { getApiKey, getBaseUrl } from "../lib/helpers";
 import { useAppSelector } from "../lib/hooks";
 import { ArticleObj, NewsResponse } from "../lib/types";
+import { LatestNews } from "../ui/containers";
 
 const Homepage = () => {
 	const [loading, setLoading] = useState<boolean>(true);
@@ -10,6 +11,7 @@ const Homepage = () => {
 
 	const searchTerm = useAppSelector((state) => state.search.searchTerm);
 
+	//refresh newsList wheneve searchTerm changes
 	useEffect(() => {
 		fetchNews();
 	}, [searchTerm]);
@@ -23,8 +25,12 @@ const Homepage = () => {
 			);
 			if (res.ok) {
 				const data: NewsResponse = await res.json();
-				setNewsList(data.articles);
-				console.log("res", data);
+				setNewsList(
+					data.articles.filter(
+						(item) => !item.title.includes("[Removed]") && item.urlToImage
+					)
+				);
+				console.log("data", data);
 			}
 		} catch (error) {
 			console.error(error);
@@ -45,6 +51,7 @@ const Homepage = () => {
 						<p>Loading...</p>
 					) : (
 						<>
+							<LatestNews />
 							{newsList.map((item, i) => (
 								<article key={`${item.publishedAt}-${i}`} className="article">
 									<div className="article__image">
