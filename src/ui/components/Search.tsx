@@ -1,11 +1,16 @@
 import React from "react";
 import { SearchIcon } from "../../assets";
+import { useAppDispatch, useAppSelector } from "../../lib/hooks";
+import { setSearchTerm } from "../../lib/store/searchSlice";
 
 interface SearchProps {
 	withButton?: boolean;
 }
 
 const Search: React.FC<SearchProps> = ({ withButton }) => {
+	const searchTerm = useAppSelector((state) => state.search.searchTerm);
+	const dispatch = useAppDispatch();
+
 	return (
 		<form className="search__form">
 			<input
@@ -13,6 +18,8 @@ const Search: React.FC<SearchProps> = ({ withButton }) => {
 				name="search"
 				placeholder="Search news"
 				className="search__input"
+				value={searchTerm}
+				onChange={(e) => dispatch(setSearchTerm(e.target.value))}
 			/>
 			<span className="search__search-icon">
 				<SearchIcon />
