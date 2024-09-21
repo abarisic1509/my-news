@@ -1,0 +1,22 @@
+.main-wrapper {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+}
+
+.content-wrapper {
+	display: grid;
+	grid-template-rows: auto 1fr;
+	min-height: 100%;
+	padding: 0 1rem;
+}
+
+@media (min-width: 900px) {
+	.content-wrapper {
+		grid-template-columns: auto 1fr;
+
+		.searchbar {
+			grid-column: 1/-1;
+		}
+	}
+}

@@ -1,6 +1,6 @@
 .searchbar {
 	display: flex;
-	padding: 1.5rem 1rem 0;
+	padding: 1.5rem 0 0;
 	width: 100%;
 
 	.searchbar__inner {
@@ -23,6 +23,7 @@
 
 @media (min-width: 900px) {
 	.searchbar {
+		padding: 1.5rem 0;
 		.searchbar__inner {
 			@include useFlex(start, center, row, 2.5rem);
 			padding-bottom: 1.75rem;

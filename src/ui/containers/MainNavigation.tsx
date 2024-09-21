@@ -107,7 +107,7 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
 			</h6>
 			<Search />
 			<ul className="nav__list">
-				<li>
+				<li onClick={handleMenu}>
 					<Link
 						to={"/"}
 						className={`nav__link ${pathname === "/" ? "active" : ""}`}
@@ -117,7 +117,7 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
 					</Link>
 				</li>
 				{links.map((item) => (
-					<li key={item.id}>
+					<li key={item.id} onClick={handleMenu}>
 						<Link
 							to={item.href}
 							className={`nav__link ${pathname === item.href ? "active" : ""}`}
