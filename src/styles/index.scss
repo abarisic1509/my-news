@@ -9,6 +9,7 @@
 
 /* COMPONENTS */
 @import "components/button";
+@import "components/card";
 @import "components/search";
 
 /* CONTAINERS */
@@ -18,3 +19,6 @@
 
 /* WRAPPERS */
 @import "wrappers/wrappers";
+
+/* PAGES */
+@import "pages/homepage";

@@ -3,3 +3,33 @@
 	display: flex;
 	flex-direction: column;
 }
+
+.page-content {
+	width: 100%;
+	@include useFlex(start, start, column, 0.75rem);
+
+	.page-content__intro {
+		width: 100%;
+		@include useFlex(space-between, center, row, 1.5rem);
+	}
+	.page-content__articles-list {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: 1rem;
+	}
+}
+
+@media (min-width: 520px) {
+	.page-content {
+		.page-content__articles-list {
+			grid-template-columns: 1fr 1fr;
+		}
+	}
+}
+@media (min-width: 900px) {
+	.page-content {
+		.page-content__articles-list {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+}

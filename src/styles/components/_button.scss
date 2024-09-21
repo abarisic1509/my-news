@@ -17,6 +17,11 @@
 		}
 	}
 	&-neutral {
+		padding: 0.625rem 1.25rem;
+		font-weight: bold;
+		font-size: 0.875rem;
+		line-height: 1.43;
+		border-radius: 0.5rem;
 		color: $black;
 		background-color: $white;
 		&:hover,
