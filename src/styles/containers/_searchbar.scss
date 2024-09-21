@@ -19,70 +19,8 @@
 			@include fluidText(1.5rem, 2rem);
 		}
 	}
-
-	.searchbar__form {
-		position: relative;
-		width: 100%;
-		max-width: 45rem;
-		display: flex;
-		padding: 0.375rem;
-		min-height: 3.375rem;
-
-		.searchbar__input {
-			position: absolute;
-			top: 0;
-			left: 0;
-			width: 100%;
-			background-color: $white;
-			border: 1px solid transparent;
-			border-radius: 0.625rem;
-			padding: 1rem 2.8rem 1rem 3.125rem;
-			font-size: 1rem;
-			line-height: 1.25rem;
-			color: $dark;
-
-			&::placeholder {
-				color: $grayDark;
-			}
-
-			&:focus-within {
-				border-color: $dark;
-
-				& + .searchbar__search-icon {
-					color: $dark;
-				}
-			}
-		}
-		.searchbar__search-icon {
-			color: $grayDark;
-			position: absolute;
-			top: 0;
-			left: 0;
-			height: 100%;
-			aspect-ratio: 1/1;
-			display: grid;
-			place-items: center;
-		}
-		.searchbar__btn {
-			display: none;
-			position: relative;
-			z-index: 10;
-			padding: 0.625rem 1rem;
-			border-radius: 0.375rem;
-			margin-left: auto;
-		}
-	}
 }
 
-@media (min-width: 600px) {
-	.searchbar {
-		.searchbar__form {
-			.searchbar__btn {
-				display: block;
-			}
-		}
-	}
-}
 @media (min-width: 900px) {
 	.searchbar {
 		.searchbar__inner {

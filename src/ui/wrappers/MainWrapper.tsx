@@ -1,4 +1,4 @@
-import React, { ReactNode } from "react";
+import React, { ReactNode, useState } from "react";
 import { MainNavigation, Searchbar, Topbar } from "../containers";
 
 interface MainWrapperProps {
@@ -6,14 +6,38 @@ interface MainWrapperProps {
 }
 
 const MainWrapper: React.FC<MainWrapperProps> = ({ children }) => {
+	const [mobileMenuActive, setMobileMenuActive] = useState<boolean>(false);
+	const [mobileMenuVisible, setMobileMenuVisible] = useState<boolean>(false);
+
+	const handleMobileMenu = () => {
+		if (mobileMenuVisible) {
+			setMobileMenuVisible(false);
+			setTimeout(() => {
+				setMobileMenuActive(false);
+			}, 500);
+		} else {
+			setMobileMenuActive(true);
+			setTimeout(() => {
+				setMobileMenuVisible(true);
+			}, 100);
+		}
+	};
+
 	return (
 		<div className="main-wrapper">
 			<Topbar />
-			<main className="content-wrapper">
-				<Searchbar />
-				<MainNavigation />
+			<div className="content-wrapper">
+				<Searchbar
+					isVisible={mobileMenuVisible}
+					handleMenu={handleMobileMenu}
+				/>
+				<MainNavigation
+					isActive={mobileMenuActive}
+					isVisible={mobileMenuVisible}
+					handleMenu={handleMobileMenu}
+				/>
 				{children}
-			</main>
+			</div>
 		</div>
 	);
 };

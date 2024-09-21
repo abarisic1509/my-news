@@ -1,16 +1,24 @@
 import React from "react";
-import { SearchIcon } from "../../assets";
+import { Search } from "../components";
 
-const Searchbar: React.FC = () => {
+interface SearchbarProps {
+	isVisible: boolean;
+	handleMenu: () => void;
+}
+const Searchbar: React.FC<SearchbarProps> = ({ isVisible, handleMenu }) => {
 	return (
-		<div className="searchbar">
+		<header className="searchbar">
 			<div className="searchbar__inner">
 				<div className="searchbar__top">
 					<h1 className="logo">
 						<span className="text-orange">My</span>
 						<span>News</span>
 					</h1>
-					<button className="searchbar__menu-btn">
+					<button
+						className="searchbar__menu-btn"
+						aria-expanded={isVisible}
+						onClick={handleMenu}
+					>
 						<span className="sr-only">Open menu</span>
 						<svg
 							aria-hidden="true"
@@ -26,22 +34,9 @@ const Searchbar: React.FC = () => {
 						</svg>
 					</button>
 				</div>
-				<form className="searchbar__form">
-					<input
-						id="search"
-						name="search"
-						placeholder="Search news"
-						className="searchbar__input"
-					/>
-					<span className="searchbar__search-icon">
-						<SearchIcon />
-					</span>
-					<button type="submit" className="btn-primary searchbar__btn">
-						Search
-					</button>
-				</form>
+				<Search withButton={true} />
 			</div>
-		</div>
+		</header>
 	);
 };
 

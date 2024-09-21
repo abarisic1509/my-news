@@ -9,9 +9,11 @@
 
 /* COMPONENTS */
 @import "components/button";
+@import "components/search";
 
 /* CONTAINERS */
-@import "containers/topbar";
+@import "containers/navigation";
 @import "containers/searchbar";
+@import "containers/topbar";
 
 @import "responsive";
