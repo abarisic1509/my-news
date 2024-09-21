@@ -2,7 +2,7 @@
 	display: flex;
 	width: 100vw;
 	background: url(/topbar-bg.png) center/cover no-repeat;
-	padding: 0.5rem 1.5rem;
+	padding: 0.5rem 1rem;
 
 	.topbar__inner {
 		@include useFlex(space-between, center, row, 1.5rem);
@@ -32,27 +32,17 @@
 		@include useFlex(end, center, row, 1.5rem);
 
 		.topbar__btn {
-			display: block;
 			padding: 0.625rem 1.25rem;
 			font-weight: bold;
 			font-size: 0.875rem;
 			line-height: 1.43;
 			border-radius: 0.5rem;
-
-			&.btn-ghost {
-				&:hover,
-				&:focus {
-					background-color: rgba($color: $black, $alpha: 0.15);
-				}
-			}
-			&.btn-neutral {
-				color: $black;
-				background-color: $white;
-				&:hover,
-				&:focus {
-					background-color: rgba($color: $white, $alpha: 0.9);
-				}
-			}
 		}
+	}
+}
+
+@media (max-width: 900px) {
+	.topbar {
+		display: none;
 	}
 }

@@ -9,11 +9,11 @@ const MainWrapper: React.FC<MainWrapperProps> = ({ children }) => {
 	return (
 		<div className="main-wrapper">
 			<Topbar />
-			<Searchbar />
-			<div className="content-wrapper">
+			<main className="content-wrapper">
+				<Searchbar />
 				<MainNavigation />
 				{children}
-			</div>
+			</main>
 		</div>
 	);
 };

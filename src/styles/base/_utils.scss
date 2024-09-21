@@ -1,4 +1,4 @@
-// ---------- Layout
+// ---------- Display
 .d-flex {
 	display: flex;
 }
@@ -9,6 +9,11 @@
 
 .d-block {
 	display: block;
+}
+
+// ---------- Colors
+.text-orange {
+	color: $orangeDark;
 }
 
 // ---------- Accessability

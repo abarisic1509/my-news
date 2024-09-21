@@ -1,0 +1,27 @@
+.btn {
+	display: block;
+
+	&-primary {
+		color: $white;
+		background-color: $orangeDark;
+		&:hover,
+		&:focus {
+			background-color: $orangeDarker;
+		}
+	}
+
+	&-ghost {
+		&:hover,
+		&:focus {
+			background-color: rgba($color: $black, $alpha: 0.15);
+		}
+	}
+	&-neutral {
+		color: $black;
+		background-color: $white;
+		&:hover,
+		&:focus {
+			background-color: rgba($color: $white, $alpha: 0.9);
+		}
+	}
+}
