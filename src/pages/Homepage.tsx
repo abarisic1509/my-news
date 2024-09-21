@@ -30,7 +30,6 @@ const Homepage = () => {
 						(item) => !item.title.includes("[Removed]") && item.urlToImage
 					)
 				);
-				console.log("data", data);
 			}
 		} catch (error) {
 			console.error(error);

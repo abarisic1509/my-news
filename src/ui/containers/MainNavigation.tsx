@@ -1,7 +1,6 @@
 import React from "react";
 import {
 	BusinessIcon,
-	GamesIcon,
 	HealthIcon,
 	HomeIcon,
 	NewsIcon,
@@ -54,12 +53,6 @@ const links = [
 		title: "Technology",
 		href: "/technology",
 		icon: <TvGuideIcon />,
-	},
-	{
-		id: "entertainment",
-		title: "Entertainment",
-		href: "/entertainment",
-		icon: <GamesIcon />,
 	},
 ];
 
