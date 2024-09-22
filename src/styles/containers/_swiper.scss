@@ -22,11 +22,19 @@
 }
 .swiper {
 	width: calc(100vw - 2rem);
-	max-height: calc(100vh - 13.5rem);
+	max-height: calc(100vh - 15.5rem);
+
+	.swiper-wrapper {
+		max-height: calc(100vh - 15.5rem);
+	}
 
 	.swiper-slide {
-		height: fit-content;
+		height: 100%;
 		overflow-y: auto;
+
+		.latest-news {
+			max-height: unset;
+		}
 	}
 }
 
