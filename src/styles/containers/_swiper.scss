@@ -34,6 +34,10 @@
 
 		.latest-news {
 			max-height: unset;
+
+			.latest-news__link {
+				display: none;
+			}
 		}
 	}
 }

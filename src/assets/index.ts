@@ -1,5 +1,6 @@
 /* ICONS */
 export { default as BusinessIcon } from "./icons/Business";
+export { default as CaretRightIcon } from "./icons/CaretRight";
 export { default as GamesIcon } from "./icons/Games";
 export { default as HealthIcon } from "./icons/Health";
 export { default as HomeIcon } from "./icons/Home";

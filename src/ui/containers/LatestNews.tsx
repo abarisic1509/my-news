@@ -3,6 +3,7 @@ import { getApiKey, getBaseUrl, itemsPerPage } from "../../lib/helpers";
 import { ArticleObj, NewsResponse } from "../../lib/types";
 import { ArticleCard, Loader } from "../components";
 import LoadMore from "./LoadMore";
+import { CaretRightIcon } from "../../assets";
 
 const LatestNews: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(true);
@@ -31,24 +32,34 @@ const LatestNews: React.FC = () => {
 	}
 	return (
 		<aside className={"latest-news"}>
-			<h3 className="latest-news__title">Latest news</h3>
+			<h3 className="latest-news__title">
+				<span />
+				Latest news
+			</h3>
 
-			<ul className="latest-news__list">
-				{loading ? (
-					<li>
-						<Loader size={"md"} />
-					</li>
-				) : (
-					<>
-						{newsList.map((item, i) => (
-							<li key={`${item.publishedAt}-${i}`}>
-								<ArticleCard data={item} isCompact={true} />
-							</li>
-						))}
-						<LoadMore />
-					</>
-				)}
-			</ul>
+			<div className="latest-news__inner">
+				<ul className="latest-news__list">
+					{loading ? (
+						<li>
+							<Loader size={"md"} />
+						</li>
+					) : (
+						<>
+							{newsList.map((item, i) => (
+								<li key={`${item.publishedAt}-${i}`}>
+									<ArticleCard data={item} isCompact={true} />
+								</li>
+							))}
+							<LoadMore />
+						</>
+					)}
+				</ul>
+
+				<button className="latest-news__link">
+					See all
+					<CaretRightIcon />
+				</button>
+			</div>
 		</aside>
 	);
 };
