@@ -1,0 +1,37 @@
+.mobile-swiper {
+	@include useFlex(center, center, column, 1rem);
+	.mobile-swiper__pagination {
+		width: 100%;
+		@include useFlex(center, center, row, 1rem);
+	}
+	.mobile-swiper__pagination-btn {
+		font-size: 1rem;
+		font-weight: 600;
+		letter-spacing: -0.02px;
+		line-height: 1.25;
+		color: $black;
+		padding: 0.625rem 1rem;
+		border-radius: 100vh;
+		cursor: pointer;
+
+		&.active {
+			color: $orangeDark;
+			background-color: rgba($color: $orangeDark, $alpha: 0.1);
+		}
+	}
+}
+.swiper {
+	width: calc(100vw - 2rem);
+	max-height: calc(100vh - 13.5rem);
+
+	.swiper-slide {
+		height: fit-content;
+		overflow-y: auto;
+	}
+}
+
+@media (min-width: 520px) {
+	.mobile-swiper {
+		display: none;
+	}
+}

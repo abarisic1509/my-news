@@ -6,7 +6,7 @@ import {
 	itemsPerPage,
 } from "../../lib/helpers";
 import { ArticleObj, NewsResponse } from "../../lib/types";
-import LoadMore from "./LoadMore";
+import { LoadMore } from "../components";
 
 const LatestNews: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(true);
@@ -34,7 +34,7 @@ const LatestNews: React.FC = () => {
 		}
 	}
 	return (
-		<aside className="latest-news">
+		<aside className={"latest-news"}>
 			<h3 className="latest-news__title">Latest news</h3>
 
 			<ul className="latest-news__list">

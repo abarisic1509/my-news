@@ -11,18 +11,34 @@
 	.page-content__intro {
 		width: 100%;
 		@include useFlex(space-between, center, row, 1.5rem);
+
+		&.mobile-hidden {
+			display: none;
+		}
 	}
 	.page-content__articles-list {
 		display: grid;
 		grid-template-columns: 1fr;
 		gap: 1rem;
+
+		&.mobile-hidden {
+			display: none;
+		}
 	}
 }
 
 @media (min-width: 520px) {
 	.page-content {
+		.page-content__intro {
+			&.mobile-hidden {
+				display: flex;
+			}
+		}
 		.page-content__articles-list {
 			grid-template-columns: 1fr 1fr;
+			&.mobile-hidden {
+				display: grid;
+			}
 		}
 	}
 }

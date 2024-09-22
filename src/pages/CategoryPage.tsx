@@ -4,6 +4,7 @@ import { MainWrapper } from "../ui/wrappers";
 import { ArticleObj, NewsResponse } from "../lib/types";
 import { useAppSelector } from "../lib/hooks";
 import { getApiKey, getBaseUrl } from "../lib/helpers";
+import { ArticlesList } from "../ui/containers";
 
 const CategoryPage = () => {
 	const params = useParams();
@@ -43,27 +44,8 @@ const CategoryPage = () => {
 			<section className="page-content">
 				<div className="page-content__intro">
 					<h2 style={{ textTransform: "capitalize" }}>{params.id} news</h2>
-					<button className="btn-neutral">Favorites</button>
 				</div>
-				<div className="page-content__articles-list">
-					{loading ? (
-						<p>Loading...</p>
-					) : (
-						<>
-							{newsList.map((item, i) => (
-								<article key={`${item.publishedAt}-${i}`} className="article">
-									<div className="article__image">
-										<img src={item.urlToImage} alt="" />
-									</div>
-									<div className="article__content">
-										<h3 className="article__title">{item.title}</h3>
-										<p className="article__author">{item.author}</p>
-									</div>
-								</article>
-							))}
-						</>
-					)}
-				</div>
+				<ArticlesList loading={loading} newsList={newsList} />
 			</section>
 		</MainWrapper>
 	);

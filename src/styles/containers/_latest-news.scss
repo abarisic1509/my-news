@@ -9,6 +9,10 @@
 	position: relative;
 	@include useFlex(start, start, column, 0.75rem);
 
+	.latest-news__title {
+		display: none;
+	}
+
 	.latest-news__list {
 		@include useFlex(start, start, column, 1rem);
 
@@ -36,6 +40,14 @@
 			line-height: 1.6;
 			letter-spacing: -0.02px;
 			color: $blue;
+		}
+	}
+}
+
+@media (min-width: 520px) {
+	.latest-news {
+		.latest-news__title {
+			display: block;
 		}
 	}
 }

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { ArticleObj, NewsResponse } from "../../lib/types";
 import { useInView } from "react-intersection-observer";
 import {
@@ -10,7 +10,7 @@ import {
 
 let page = 2;
 
-const LoadMore = () => {
+const LoadMore: React.FC = () => {
 	const [data, setData] = useState<ArticleObj[]>([]);
 	const [hasMore, setHasMore] = useState<boolean>(true);
 	const { ref, inView } = useInView();
