@@ -1,13 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { ArticleObj, NewsResponse } from "../../lib/types";
 import { useInView } from "react-intersection-observer";
-import {
-	convertToLocalTime,
-	getApiKey,
-	getBaseUrl,
-	itemsPerPage,
-} from "../../lib/helpers";
-import Loader from "./Loader";
+import { getApiKey, getBaseUrl, itemsPerPage } from "../../lib/helpers";
+import { ArticleCard, Loader } from "../components";
 
 let page = 2;
 
@@ -52,12 +47,7 @@ const LoadMore: React.FC = () => {
 				data?.length > 0 &&
 				data?.map((item: ArticleObj, i: number) => (
 					<li key={`${item.publishedAt}-${i}`}>
-						<article className="latest-news_article">
-							<p>
-								{item.publishedAt ? convertToLocalTime(item.publishedAt) : ""}
-							</p>
-							<h4>{item.title}</h4>
-						</article>
+						<ArticleCard data={item} isCompact={true} />
 					</li>
 				))}
 

@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from "react";
-import {
-	convertToLocalTime,
-	getApiKey,
-	getBaseUrl,
-	itemsPerPage,
-} from "../../lib/helpers";
+import { getApiKey, getBaseUrl, itemsPerPage } from "../../lib/helpers";
 import { ArticleObj, NewsResponse } from "../../lib/types";
-import { Loader, LoadMore } from "../components";
+import { ArticleCard, Loader } from "../components";
+import LoadMore from "./LoadMore";
 
 const LatestNews: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(true);
@@ -46,14 +42,7 @@ const LatestNews: React.FC = () => {
 					<>
 						{newsList.map((item, i) => (
 							<li key={`${item.publishedAt}-${i}`}>
-								<article className="latest-news_article">
-									<p>
-										{item.publishedAt
-											? convertToLocalTime(item.publishedAt)
-											: ""}
-									</p>
-									<h4>{item.title}</h4>
-								</article>
+								<ArticleCard data={item} isCompact={true} />
 							</li>
 						))}
 						<LoadMore />
