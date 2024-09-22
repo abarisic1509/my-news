@@ -4,7 +4,7 @@ import LatestNews from "./LatestNews";
 import { ArticleCard, Loader } from "../components";
 
 interface ArticlesListProps {
-	loading: boolean;
+	loading?: boolean;
 	newsList: ArticleObj[];
 	withLatestNews?: boolean;
 	hideOnMobile?: boolean;

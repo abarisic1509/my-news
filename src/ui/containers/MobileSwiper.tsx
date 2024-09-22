@@ -6,6 +6,7 @@ import "swiper/css/pagination";
 import LatestNews from "./LatestNews";
 import { ArticleObj } from "../../lib/types";
 import ArticlesList from "./ArticlesList";
+import FavoritesList from "./FavoritesList";
 
 interface MobileSwiperProps {
 	loading: boolean;
@@ -67,7 +68,9 @@ const MobileSwiper: React.FC<MobileSwiperProps> = ({ loading, newsList }) => {
 				<SwiperSlide>
 					<LatestNews />
 				</SwiperSlide>
-				<SwiperSlide>Slide 3</SwiperSlide>
+				<SwiperSlide>
+					<FavoritesList />
+				</SwiperSlide>
 			</Swiper>
 		</div>
 	);

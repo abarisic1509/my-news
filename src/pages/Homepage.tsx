@@ -3,12 +3,13 @@ import { MainWrapper } from "../ui/wrappers";
 import { getApiKey, getBaseUrl } from "../lib/helpers";
 import { useAppSelector } from "../lib/hooks";
 import { ArticleObj, NewsResponse } from "../lib/types";
-import { ArticlesList, MobileSwiper } from "../ui/containers";
+import { ArticlesList, FavoritesList, MobileSwiper } from "../ui/containers";
 import { nanoid } from "nanoid";
 
 const Homepage = () => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [newsList, setNewsList] = useState<ArticleObj[]>([]);
+	const [showFavorites, setShowFavorites] = useState<boolean>(false);
 
 	const searchTerm = useAppSelector((state) => state.globalData.searchTerm);
 
@@ -44,19 +45,28 @@ const Homepage = () => {
 	return (
 		<MainWrapper>
 			<div className="page-content__intro mobile-hidden">
-				<h2>News</h2>
-				<button className="btn-neutral">Favorites</button>
+				<h2>{showFavorites ? "Favorites" : "News"}</h2>
+				<button
+					className="btn-neutral"
+					onClick={() => setShowFavorites((prev) => !prev)}
+				>
+					{showFavorites ? "Back to news" : "Favorites"}
+				</button>
 			</div>
 			{/* Mobile view */}
 			<MobileSwiper loading={loading} newsList={newsList} />
 
 			{/* Desktop & Tablet view */}
-			<ArticlesList
-				loading={loading}
-				newsList={newsList}
-				withLatestNews={true}
-				hideOnMobile={true}
-			/>
+			{showFavorites ? (
+				<FavoritesList />
+			) : (
+				<ArticlesList
+					loading={loading}
+					newsList={newsList}
+					withLatestNews={true}
+					hideOnMobile={true}
+				/>
+			)}
 		</MainWrapper>
 	);
 };
