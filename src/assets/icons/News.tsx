@@ -1,4 +1,4 @@
-const News = () => {
+const News: React.FC = () => {
 	return (
 		<svg
 			aria-hidden="true"

@@ -1,9 +1,9 @@
 import { configureStore } from "@reduxjs/toolkit";
-import searchReducer from "./searchSlice";
+import globalDataReducer from "./globalDataSlice";
 
 export const store = configureStore({
 	reducer: {
-		search: searchReducer,
+		globalData: globalDataReducer,
 	},
 });
 

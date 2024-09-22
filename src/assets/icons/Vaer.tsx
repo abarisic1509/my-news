@@ -1,4 +1,4 @@
-const Vaer = () => {
+const Vaer: React.FC = () => {
 	return (
 		<svg
 			aria-hidden="true"

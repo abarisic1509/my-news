@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { SearchIcon } from "../../assets";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks";
-import { setSearchTerm } from "../../lib/store/searchSlice";
+import { setSearchTerm } from "../../lib/store/globalDataSlice";
 import { useLocation } from "react-router-dom";
 
 interface SearchProps {
@@ -10,7 +10,7 @@ interface SearchProps {
 
 const Search: React.FC<SearchProps> = ({ withButton }) => {
 	const { pathname } = useLocation();
-	const searchTerm = useAppSelector((state) => state.search.searchTerm);
+	const searchTerm = useAppSelector((state) => state.globalData.searchTerm);
 	const dispatch = useAppDispatch();
 
 	//reset searchTerm whenever pathname changes

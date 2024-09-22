@@ -1,4 +1,4 @@
-import React, { ReactNode, useState } from "react";
+import React, { ReactNode, useRef, useState } from "react";
 import { MainNavigation, Searchbar, Topbar } from "../containers";
 
 interface MainWrapperProps {
@@ -6,6 +6,7 @@ interface MainWrapperProps {
 }
 
 const MainWrapper: React.FC<MainWrapperProps> = ({ children }) => {
+	const mainContentRef = useRef<HTMLElement | null>(null);
 	const [mobileMenuActive, setMobileMenuActive] = useState<boolean>(false);
 	const [mobileMenuVisible, setMobileMenuVisible] = useState<boolean>(false);
 
@@ -23,8 +24,18 @@ const MainWrapper: React.FC<MainWrapperProps> = ({ children }) => {
 		}
 	};
 
+	const handleSkipLink = () => {
+		if (mainContentRef.current) {
+			mainContentRef.current.removeAttribute("tabindex");
+			mainContentRef.current.focus();
+		}
+	};
+
 	return (
 		<div className="main-wrapper">
+			<a href="#mainContent" className="skip-link" onClick={handleSkipLink}>
+				Skip to content
+			</a>
 			<Topbar />
 			<div className="content-wrapper">
 				<Searchbar
@@ -36,7 +47,14 @@ const MainWrapper: React.FC<MainWrapperProps> = ({ children }) => {
 					isVisible={mobileMenuVisible}
 					handleMenu={handleMobileMenu}
 				/>
-				{children}
+				<main
+					id="mainContent"
+					className="page-content"
+					ref={mainContentRef}
+					tabIndex={-1}
+				>
+					{children}
+				</main>
 			</div>
 		</div>
 	);

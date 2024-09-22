@@ -5,13 +5,14 @@ import { ArticleObj, NewsResponse } from "../lib/types";
 import { useAppSelector } from "../lib/hooks";
 import { getApiKey, getBaseUrl } from "../lib/helpers";
 import { ArticlesList } from "../ui/containers";
+import { nanoid } from "nanoid";
 
 const CategoryPage = () => {
 	const params = useParams();
 	const [loading, setLoading] = useState<boolean>(true);
 	const [newsList, setNewsList] = useState<ArticleObj[]>([]);
 
-	const searchTerm = useAppSelector((state) => state.search.searchTerm);
+	const searchTerm = useAppSelector((state) => state.globalData.searchTerm);
 
 	//refresh newsList wheneve searchTerm changes
 	useEffect(() => {
@@ -28,9 +29,11 @@ const CategoryPage = () => {
 			if (res.ok) {
 				const data: NewsResponse = await res.json();
 				setNewsList(
-					data.articles.filter(
-						(item) => !item.title.includes("[Removed]") && item.urlToImage
-					)
+					data.articles
+						.filter(
+							(item) => !item.title.includes("[Removed]") && item.urlToImage
+						)
+						.map((item) => ({ ...item, articleId: nanoid() }))
 				);
 			}
 		} catch (error) {
@@ -41,12 +44,10 @@ const CategoryPage = () => {
 	}
 	return (
 		<MainWrapper>
-			<section className="page-content">
-				<div className="page-content__intro">
-					<h2 style={{ textTransform: "capitalize" }}>{params.id} news</h2>
-				</div>
-				<ArticlesList loading={loading} newsList={newsList} />
-			</section>
+			<div className="page-content__intro">
+				<h2 style={{ textTransform: "capitalize" }}>{params.id} news</h2>
+			</div>
+			<ArticlesList loading={loading} newsList={newsList} />
 		</MainWrapper>
 	);
 };

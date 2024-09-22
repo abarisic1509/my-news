@@ -28,12 +28,12 @@ const ArticlesList: React.FC<ArticlesListProps> = ({
 				<>
 					{newsList.length > 0 ? (
 						<>
-							{withLatestNews && <LatestNews />}
 							{newsList.map((item, i) => (
-								<React.Fragment key={`${item.publishedAt}-${i}`}>
+								<React.Fragment key={`${item.articleId}-${i}`}>
 									<ArticleCard data={item} />
 								</React.Fragment>
 							))}
+							{withLatestNews && <LatestNews />}
 						</>
 					) : (
 						<p>No results</p>

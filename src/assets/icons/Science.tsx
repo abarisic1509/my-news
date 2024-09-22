@@ -1,4 +1,4 @@
-const Science = () => {
+const Science: React.FC = () => {
 	return (
 		<svg
 			aria-hidden="true"

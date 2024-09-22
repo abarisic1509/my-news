@@ -1,4 +1,4 @@
-const Business = () => {
+const Business: React.FC = () => {
 	return (
 		<svg
 			aria-hidden="true"

@@ -1,4 +1,4 @@
-const Search = () => {
+const Search: React.FC = () => {
 	return (
 		<svg
 			aria-hidden="true"

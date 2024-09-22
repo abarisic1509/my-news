@@ -1,4 +1,4 @@
-const PropertyToday = () => {
+const PropertyToday: React.FC = () => {
 	return (
 		<svg
 			aria-hidden="true"

@@ -1,4 +1,4 @@
-const Games = () => {
+const Games: React.FC = () => {
 	return (
 		<svg
 			aria-hidden="true"

@@ -28,3 +28,18 @@
 	white-space: nowrap; /* added line */
 	border: 0;
 }
+.skip-link {
+	margin-right: 1rem;
+	position: fixed;
+	z-index: 999;
+	transform: translateX(-200%);
+	transition: transform 0.3s;
+	padding: 0.5rem 1rem;
+	width: fit-content;
+	font-weight: 600;
+	background-color: $white;
+
+	&:focus {
+		transform: translateX(0);
+	}
+}

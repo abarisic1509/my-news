@@ -1,4 +1,5 @@
 export interface ArticleObj {
+	articleId?: string;
 	source: {
 		name: string;
 		id: string;

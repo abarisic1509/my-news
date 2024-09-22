@@ -1,4 +1,4 @@
-const Sports = () => {
+const Sports: React.FC = () => {
 	return (
 		<svg
 			aria-hidden="true"

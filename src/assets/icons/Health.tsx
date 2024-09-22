@@ -1,4 +1,4 @@
-const Health = () => {
+const Health: React.FC = () => {
 	return (
 		<svg
 			aria-hidden="true"

@@ -4,9 +4,13 @@
 	&-primary {
 		color: $white;
 		background-color: $orangeDark;
+		border: 2px solid transparent;
 		&:hover,
 		&:focus {
 			background-color: $orangeDarker;
+		}
+		&:focus {
+			border-color: $black;
 		}
 	}
 
@@ -24,9 +28,13 @@
 		border-radius: 0.5rem;
 		color: $black;
 		background-color: $white;
+		border: 2px solid transparent;
 		&:hover,
 		&:focus {
 			background-color: rgba($color: $white, $alpha: 0.9);
+		}
+		&:focus {
+			border-color: $black;
 		}
 	}
 }

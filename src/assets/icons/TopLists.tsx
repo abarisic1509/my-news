@@ -1,4 +1,4 @@
-const TopLists = () => {
+const TopLists: React.FC = () => {
 	return (
 		<svg
 			aria-hidden="true"

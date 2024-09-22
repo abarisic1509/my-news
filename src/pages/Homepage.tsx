@@ -4,12 +4,13 @@ import { getApiKey, getBaseUrl } from "../lib/helpers";
 import { useAppSelector } from "../lib/hooks";
 import { ArticleObj, NewsResponse } from "../lib/types";
 import { ArticlesList, MobileSwiper } from "../ui/containers";
+import { nanoid } from "nanoid";
 
 const Homepage = () => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [newsList, setNewsList] = useState<ArticleObj[]>([]);
 
-	const searchTerm = useAppSelector((state) => state.search.searchTerm);
+	const searchTerm = useAppSelector((state) => state.globalData.searchTerm);
 
 	//refresh newsList wheneve searchTerm changes
 	useEffect(() => {
@@ -26,9 +27,11 @@ const Homepage = () => {
 			if (res.ok) {
 				const data: NewsResponse = await res.json();
 				setNewsList(
-					data.articles.filter(
-						(item) => !item.title.includes("[Removed]") && item.urlToImage
-					)
+					data.articles
+						.filter(
+							(item) => !item.title.includes("[Removed]") && item.urlToImage
+						)
+						.map((item) => ({ ...item, articleId: nanoid() }))
 				);
 			}
 		} catch (error) {
@@ -40,22 +43,20 @@ const Homepage = () => {
 
 	return (
 		<MainWrapper>
-			<main className="page-content">
-				<div className="page-content__intro mobile-hidden">
-					<h2>News</h2>
-					<button className="btn-neutral">Favorites</button>
-				</div>
-				{/* Mobile view */}
-				<MobileSwiper loading={loading} newsList={newsList} />
+			<div className="page-content__intro mobile-hidden">
+				<h2>News</h2>
+				<button className="btn-neutral">Favorites</button>
+			</div>
+			{/* Mobile view */}
+			<MobileSwiper loading={loading} newsList={newsList} />
 
-				{/* Desktop & Tablet view */}
-				<ArticlesList
-					loading={loading}
-					newsList={newsList}
-					withLatestNews={true}
-					hideOnMobile={true}
-				/>
-			</main>
+			{/* Desktop & Tablet view */}
+			<ArticlesList
+				loading={loading}
+				newsList={newsList}
+				withLatestNews={true}
+				hideOnMobile={true}
+			/>
 		</MainWrapper>
 	);
 };

@@ -1,4 +1,4 @@
-const TvGuide = () => {
+const TvGuide: React.FC = () => {
 	return (
 		<svg
 			aria-hidden="true"

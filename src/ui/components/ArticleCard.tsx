@@ -1,6 +1,13 @@
 import React from "react";
 import { ArticleObj } from "../../lib/types";
 import { convertToLocalTime } from "../../lib/helpers";
+import { useAppDispatch, useAppSelector } from "../../lib/hooks";
+import {
+	addFavorite,
+	isFavorite,
+	removeFavorite,
+} from "../../lib/store/globalDataSlice";
+import { StarFilledIcon, StarIcon } from "../../assets";
 
 interface ArticleCardProps {
 	data: ArticleObj;
@@ -8,6 +15,19 @@ interface ArticleCardProps {
 }
 
 const ArticleCard: React.FC<ArticleCardProps> = ({ data, isCompact }) => {
+	const dispatch = useAppDispatch();
+	const isInFavorites = useAppSelector((state) =>
+		isFavorite(state.globalData, data)
+	);
+
+	const toggleFavorite = () => {
+		if (isInFavorites) {
+			dispatch(removeFavorite(data));
+		} else {
+			dispatch(addFavorite(data));
+		}
+	};
+
 	if (isCompact) {
 		// return latest news item
 		return (
@@ -36,6 +56,16 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ data, isCompact }) => {
 				</h3>
 				<p className="article__author">{data.author}</p>
 			</div>
+			<button
+				className="article__favorite-btn"
+				onClick={toggleFavorite}
+				aria-label={
+					isInFavorites ? "Remove from favorites" : "Add to favorites"
+				}
+				aria-pressed={isInFavorites}
+			>
+				{isInFavorites ? <StarFilledIcon /> : <StarIcon />}
+			</button>
 		</article>
 	);
 };
