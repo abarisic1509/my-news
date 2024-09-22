@@ -7,6 +7,7 @@ import {
 	getBaseUrl,
 	itemsPerPage,
 } from "../../lib/helpers";
+import Loader from "./Loader";
 
 let page = 2;
 
@@ -62,8 +63,8 @@ const LoadMore: React.FC = () => {
 
 			{/* Loader */}
 			{hasMore && (
-				<div ref={ref} role="status" aria-label="Loading more">
-					Loading...
+				<div ref={ref} style={{ width: "100%" }}>
+					<Loader size={"sm"} />
 				</div>
 			)}
 		</>

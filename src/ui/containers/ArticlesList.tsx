@@ -1,6 +1,7 @@
 import React from "react";
 import { ArticleObj } from "../../lib/types";
 import LatestNews from "./LatestNews";
+import { Loader } from "../components";
 
 interface ArticlesListProps {
 	loading: boolean;
@@ -22,21 +23,27 @@ const ArticlesList: React.FC<ArticlesListProps> = ({
 			}`}
 		>
 			{loading ? (
-				<p>Loading...</p>
+				<Loader size={"lg"} />
 			) : (
 				<>
-					{withLatestNews && <LatestNews />}
-					{newsList.map((item, i) => (
-						<article key={`${item.publishedAt}-${i}`} className="article">
-							<div className="article__image">
-								<img src={item.urlToImage} alt="" />
-							</div>
-							<div className="article__content">
-								<h3 className="article__title">{item.title}</h3>
-								<p className="article__author">{item.author}</p>
-							</div>
-						</article>
-					))}
+					{newsList.length > 0 ? (
+						<>
+							{withLatestNews && <LatestNews />}
+							{newsList.map((item, i) => (
+								<article key={`${item.publishedAt}-${i}`} className="article">
+									<div className="article__image">
+										<img src={item.urlToImage} alt="" />
+									</div>
+									<div className="article__content">
+										<h3 className="article__title">{item.title}</h3>
+										<p className="article__author">{item.author}</p>
+									</div>
+								</article>
+							))}
+						</>
+					) : (
+						<p>No results</p>
+					)}
 				</>
 			)}
 		</div>

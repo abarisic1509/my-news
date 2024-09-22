@@ -6,7 +6,7 @@ import {
 	itemsPerPage,
 } from "../../lib/helpers";
 import { ArticleObj, NewsResponse } from "../../lib/types";
-import { LoadMore } from "../components";
+import { Loader, LoadMore } from "../components";
 
 const LatestNews: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(true);
@@ -39,7 +39,9 @@ const LatestNews: React.FC = () => {
 
 			<ul className="latest-news__list">
 				{loading ? (
-					<li>Loading..</li>
+					<li>
+						<Loader size={"md"} />
+					</li>
 				) : (
 					<>
 						{newsList.map((item, i) => (
