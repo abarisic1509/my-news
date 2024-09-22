@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { convertToLocalTime, getApiKey, getBaseUrl } from "../../lib/helpers";
+import {
+	convertToLocalTime,
+	getApiKey,
+	getBaseUrl,
+	itemsPerPage,
+} from "../../lib/helpers";
 import { ArticleObj, NewsResponse } from "../../lib/types";
+import LoadMore from "./LoadMore";
 
 const LatestNews: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(true);
-	const [loadingMore, setLoadingMore] = useState<boolean>(false);
-	const [hasMore, setHasMore] = useState<boolean>(true);
-	const [resultsCount, setResultsCount] = useState<number>(0);
 	const [newsList, setNewsList] = useState<ArticleObj[]>([]);
 
 	useEffect(() => {
@@ -18,11 +21,10 @@ const LatestNews: React.FC = () => {
 		const apiKey = getApiKey();
 		try {
 			const res = await fetch(
-				`${baseUrl}/everything?apiKey=${apiKey}&sources=the-hill,abc-news,the-washington-post,associated-press,espn,nbc-news,business-insider&sortBy=publishedAt&pageSize=100`
+				`${baseUrl}/everything?apiKey=${apiKey}&sources=the-hill,abc-news,the-washington-post,associated-press,espn,nbc-news,business-insider&sortBy=publishedAt&page=1&pageSize=${itemsPerPage}`
 			);
 			if (res.ok) {
 				const data: NewsResponse = await res.json();
-				setResultsCount(data.totalResults);
 				setNewsList(data.articles);
 			}
 		} catch (error) {
@@ -52,6 +54,7 @@ const LatestNews: React.FC = () => {
 								</article>
 							</li>
 						))}
+						<LoadMore />
 					</>
 				)}
 			</ul>

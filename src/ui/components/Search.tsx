@@ -1,15 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { SearchIcon } from "../../assets";
 import { useAppDispatch, useAppSelector } from "../../lib/hooks";
 import { setSearchTerm } from "../../lib/store/searchSlice";
+import { useLocation } from "react-router-dom";
 
 interface SearchProps {
 	withButton?: boolean;
 }
 
 const Search: React.FC<SearchProps> = ({ withButton }) => {
+	const { pathname } = useLocation();
 	const searchTerm = useAppSelector((state) => state.search.searchTerm);
 	const dispatch = useAppDispatch();
+
+	//reset searchTerm whenever pathname changes
+	useEffect(() => {
+		dispatch(setSearchTerm(""));
+	}, [pathname]);
 
 	return (
 		<form className="search__form">
