@@ -50,6 +50,11 @@
 			&:not(:last-child) .latest-news_article {
 				border-bottom: 1px solid $grayLighter;
 			}
+
+			a:hover,
+			a:focus {
+				color: $blue;
+			}
 		}
 	}
 

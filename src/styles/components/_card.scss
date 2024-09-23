@@ -38,6 +38,11 @@
 		-webkit-line-clamp: 2;
 		-webkit-box-orient: vertical;
 		overflow: hidden;
+
+		a:hover,
+		a:focus {
+			color: $blue;
+		}
 	}
 	.article__author {
 		font-size: 0.75rem;

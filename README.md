@@ -1,50 +1,20 @@
-# React + TypeScript + Vite
+# MyNews
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is a solution for the technical assingment built with Vite React and Typescript.
 
-Currently, two official plugins are available:
+How to run:
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1.  Install all the packages: npm i
+2.  add .env file in the root of a project and define VITE_API_URL and VITE_API_KEY (project will not work without it!)
+3.  run development server: npm run dev
+4.  Build the solution: npm run build
+5.  Run the solution: npm run start
 
-## Expanding the ESLint configuration
+Design decisions:
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- Added focus/hover states on the interactive components for better UX
+- Added "Favorites" option on homepage that toggles between featured,latest and favorite articles on mobile and featured/latest and favorites on desktop
+- Loading state added on article lists for better UX
+- Category title removed from article card because API doesn't return category data
+- No results state added for better UX
+- 404 view added for better UX
