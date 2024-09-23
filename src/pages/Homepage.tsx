@@ -4,7 +4,6 @@ import { getApiKey, getBaseUrl } from "../lib/helpers";
 import { useAppSelector } from "../lib/hooks";
 import { ArticleObj, NewsResponse } from "../lib/types";
 import { ArticlesList, FavoritesList, MobileSwiper } from "../ui/containers";
-import { nanoid } from "nanoid";
 
 const Homepage: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(true);
@@ -32,7 +31,7 @@ const Homepage: React.FC = () => {
 						.filter(
 							(item) => !item.title.includes("[Removed]") && item.urlToImage
 						)
-						.map((item) => ({ ...item, articleId: nanoid() }))
+						.map((item) => item)
 				);
 			}
 		} catch (error) {

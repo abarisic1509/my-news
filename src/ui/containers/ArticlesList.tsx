@@ -1,7 +1,7 @@
 import React from "react";
 import { ArticleObj } from "../../lib/types";
 import LatestNews from "./LatestNews";
-import { ArticleCard, Loader } from "../components";
+import { ArticleCard, Loader, NoResults } from "../components";
 
 interface ArticlesListProps {
 	loading?: boolean;
@@ -37,7 +37,7 @@ const ArticlesList: React.FC<ArticlesListProps> = ({
 							{withLatestNews && <LatestNews />}
 						</>
 					) : (
-						<p>No results</p>
+						<NoResults />
 					)}
 				</>
 			)}

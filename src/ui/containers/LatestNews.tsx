@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getApiKey, getBaseUrl, itemsPerPage } from "../../lib/helpers";
 import { ArticleObj, NewsResponse } from "../../lib/types";
-import { ArticleCard, Loader } from "../components";
+import { ArticleCard, Loader, NoResults } from "../components";
 import LoadMore from "./LoadMore";
 import { CaretRightIcon } from "../../assets";
 
@@ -45,12 +45,18 @@ const LatestNews: React.FC = () => {
 						</li>
 					) : (
 						<>
-							{newsList.map((item, i) => (
-								<li key={`${item.publishedAt}-${i}`}>
-									<ArticleCard data={item} isCompact={true} />
-								</li>
-							))}
-							<LoadMore />
+							{newsList.length > 0 ? (
+								<>
+									{newsList.map((item, i) => (
+										<li key={`${item.publishedAt}-${i}`}>
+											<ArticleCard data={item} isCompact={true} />
+										</li>
+									))}
+									<LoadMore />
+								</>
+							) : (
+								<NoResults />
+							)}
 						</>
 					)}
 				</ul>

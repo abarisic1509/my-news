@@ -5,7 +5,16 @@ import { ArticleObj, NewsResponse } from "../lib/types";
 import { useAppSelector } from "../lib/hooks";
 import { getApiKey, getBaseUrl } from "../lib/helpers";
 import { ArticlesList } from "../ui/containers";
-import { nanoid } from "nanoid";
+import NotFound from "./NotFound";
+
+const validIds = [
+	"general",
+	"business",
+	"health",
+	"science",
+	"sports",
+	"technology",
+];
 
 const CategoryPage: React.FC = () => {
 	const params = useParams<{ id: string }>();
@@ -35,7 +44,7 @@ const CategoryPage: React.FC = () => {
 						.filter(
 							(item) => !item.title.includes("[Removed]") && item.urlToImage
 						)
-						.map((item) => ({ ...item, articleId: nanoid() }))
+						.map((item) => item)
 				);
 			}
 		} catch (error) {
@@ -44,6 +53,11 @@ const CategoryPage: React.FC = () => {
 			setLoading(false);
 		}
 	}
+
+	if (!validIds.includes(params?.id || "")) {
+		return <NotFound />; // Render 404 if ID doesn't exist
+	}
+
 	return (
 		<MainWrapper>
 			<div className="page-content__intro">
