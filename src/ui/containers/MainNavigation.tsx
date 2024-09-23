@@ -71,6 +71,7 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
 
 	return (
 		<nav
+			data-testId="main-nav"
 			className={`nav ${isActive ? "active" : ""} ${
 				isVisible ? "visible" : ""
 			}`}

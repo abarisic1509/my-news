@@ -18,6 +18,7 @@ const ArticlesList: React.FC<ArticlesListProps> = ({
 }) => {
 	return (
 		<div
+			data-testid="articles-list"
 			className={`page-content__articles-list ${
 				hideOnMobile ? "mobile-hidden" : ""
 			}`}

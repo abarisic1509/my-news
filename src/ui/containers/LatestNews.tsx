@@ -38,7 +38,7 @@ const LatestNews: React.FC = () => {
 			</h3>
 
 			<div className="latest-news__inner">
-				<ul className="latest-news__list">
+				<ul className="latest-news__list" data-testid="latest-news">
 					{loading ? (
 						<li>
 							<Loader size={"md"} />

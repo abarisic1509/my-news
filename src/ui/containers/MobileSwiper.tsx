@@ -52,8 +52,10 @@ const MobileSwiper: React.FC<MobileSwiperProps> = ({ loading, newsList }) => {
 						className={`mobile-swiper__pagination-btn ${
 							activeIndex === i ? "active" : ""
 						}`}
+						aria-current={activeIndex === i ? "true" : "false"}
 						role="button"
 						onClick={() => handlePaginationClick(i)}
+						data-testid="swiper-buttons"
 					>
 						{item.title}
 					</li>

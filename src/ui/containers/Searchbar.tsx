@@ -15,6 +15,8 @@ const Searchbar: React.FC<SearchbarProps> = ({ isVisible, handleMenu }) => {
 						<span>News</span>
 					</h1>
 					<button
+						data-testid="menu-btn-open"
+						name="Toggle menu"
 						className="searchbar__menu-btn"
 						aria-expanded={isVisible}
 						onClick={handleMenu}
