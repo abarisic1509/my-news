@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { MainWrapper } from "../ui/wrappers";
 import { getApiKey, getBaseUrl } from "../lib/helpers";
 import { useAppSelector } from "../lib/hooks";
@@ -6,7 +6,7 @@ import { ArticleObj, NewsResponse } from "../lib/types";
 import { ArticlesList, FavoritesList, MobileSwiper } from "../ui/containers";
 import { nanoid } from "nanoid";
 
-const Homepage = () => {
+const Homepage: React.FC = () => {
 	const [loading, setLoading] = useState<boolean>(true);
 	const [newsList, setNewsList] = useState<ArticleObj[]>([]);
 	const [showFavorites, setShowFavorites] = useState<boolean>(false);

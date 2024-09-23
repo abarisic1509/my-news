@@ -13,7 +13,12 @@ interface MobileSwiperProps {
 	newsList: ArticleObj[];
 }
 
-const paginationsItems = [
+interface PaginationItem {
+	id: number;
+	title: string;
+}
+
+const paginationsItems: PaginationItem[] = [
 	{
 		id: 1,
 		title: "Featured",
@@ -41,7 +46,7 @@ const MobileSwiper: React.FC<MobileSwiperProps> = ({ loading, newsList }) => {
 	return (
 		<div className="mobile-swiper">
 			<ul className="mobile-swiper__pagination">
-				{paginationsItems.map((item, i) => (
+				{paginationsItems.map((item: PaginationItem, i: number) => (
 					<li
 						key={item.id}
 						className={`mobile-swiper__pagination-btn ${

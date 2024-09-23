@@ -7,8 +7,8 @@ import { getApiKey, getBaseUrl } from "../lib/helpers";
 import { ArticlesList } from "../ui/containers";
 import { nanoid } from "nanoid";
 
-const CategoryPage = () => {
-	const params = useParams();
+const CategoryPage: React.FC = () => {
+	const params = useParams<{ id: string }>();
 	const [loading, setLoading] = useState<boolean>(true);
 	const [newsList, setNewsList] = useState<ArticleObj[]>([]);
 
@@ -16,15 +16,17 @@ const CategoryPage = () => {
 
 	//refresh newsList wheneve searchTerm changes
 	useEffect(() => {
-		fetchNews();
+		if (params.id) {
+			fetchNews(params.id);
+		}
 	}, [searchTerm, params]);
 
-	async function fetchNews() {
+	async function fetchNews(category: string): Promise<void> {
 		const baseUrl = getBaseUrl();
 		const apiKey = getApiKey();
 		try {
 			const res = await fetch(
-				`${baseUrl}/top-headlines?apiKey=${apiKey}&country=us&category=${params.id}&pageSize=100&q=${searchTerm}`
+				`${baseUrl}/top-headlines?apiKey=${apiKey}&country=us&category=${category}&pageSize=100&q=${searchTerm}`
 			);
 			if (res.ok) {
 				const data: NewsResponse = await res.json();

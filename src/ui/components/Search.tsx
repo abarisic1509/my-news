@@ -19,7 +19,7 @@ const Search: React.FC<SearchProps> = ({ withButton }) => {
 	}, [pathname]);
 
 	return (
-		<form className="search__form">
+		<form className="search__form" onSubmit={(e) => e.preventDefault()}>
 			<input
 				id="search"
 				name="search"

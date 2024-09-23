@@ -34,7 +34,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ data, isCompact }) => {
 			<article className="latest-news_article">
 				<p>{data.publishedAt ? convertToLocalTime(data.publishedAt) : ""}</p>
 				<h4>
-					<a href={data.url} target="_blank">
+					<a href={data.url} target="_blank" rel="noopener noreferrer">
 						{data.title}
 					</a>
 				</h4>
@@ -50,7 +50,7 @@ const ArticleCard: React.FC<ArticleCardProps> = ({ data, isCompact }) => {
 			</div>
 			<div className="article__content">
 				<h3 className="article__title">
-					<a href={data.url} target="_blank">
+					<a href={data.url} target="_blank" rel="noopener noreferrer">
 						{data.title}
 					</a>
 				</h3>

@@ -16,8 +16,14 @@ interface MainNavigationProps {
 	isVisible: boolean;
 	handleMenu: () => void;
 }
+interface LinkItem {
+	id: string;
+	title: string;
+	href: string;
+	icon: React.ReactNode;
+}
 
-const links = [
+const links: LinkItem[] = [
 	{
 		id: "general",
 		title: "General",
@@ -116,7 +122,7 @@ const MainNavigation: React.FC<MainNavigationProps> = ({
 						<span>Home</span>
 					</Link>
 				</li>
-				{links.map((item) => (
+				{links.map((item: LinkItem) => (
 					<li key={item.id} onClick={handleMenu}>
 						<Link
 							to={item.href}

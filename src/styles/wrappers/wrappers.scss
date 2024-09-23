@@ -2,6 +2,8 @@
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
+	overflow: hidden;
+	padding-bottom: 2.5rem;
 }
 
 .content-wrapper {

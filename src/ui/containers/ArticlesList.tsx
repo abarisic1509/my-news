@@ -28,7 +28,7 @@ const ArticlesList: React.FC<ArticlesListProps> = ({
 				<>
 					{newsList.length > 0 ? (
 						<>
-							{newsList.map((item, i) => (
+							{newsList.map((item: ArticleObj, i: number) => (
 								<React.Fragment key={`${item.articleId}-${i}`}>
 									<ArticleCard data={item} />
 								</React.Fragment>
