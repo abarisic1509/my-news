@@ -16,7 +16,8 @@
 
 		.logo {
 			font-weight: 900;
-			@include fluidText(1.5rem, 2rem);
+			font-size: 1.5rem;
+			font-size: clamp(1.5rem, 0.875rem + 2vw, 2rem);
 		}
 	}
 }
@@ -32,6 +33,10 @@
 			width: fit-content;
 			.searchbar__menu-btn {
 				display: none;
+			}
+
+			.logo {
+				font-size: 2rem;
 			}
 		}
 	}
