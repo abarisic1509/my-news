@@ -1,4 +1,4 @@
-export const itemsPerPage = 25;
+export const itemsPerPage: number = 24;
 
 export const getBaseUrl = (): string => {
 	const baseUrl = import.meta.env.VITE_API_URL;

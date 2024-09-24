@@ -23,6 +23,12 @@ vi.mock("../ui/components/LatestNews", () => {
 vi.mock("../ui/components/FavoritesList", () => {
 	return () => <div data-testid="favorites-list">Favorites List</div>;
 });
+Object.defineProperty(window, "scrollTo", {
+	value: vi.fn(),
+	writable: true,
+});
+
+HTMLCanvasElement.prototype.getContext = vi.fn();
 
 describe("MobileSwiper", () => {
 	const mockNewsList = [
@@ -40,11 +46,20 @@ describe("MobileSwiper", () => {
 			content: "Some content",
 		},
 	];
+	const totalResults = 35;
+	const page = 1;
+	const setPage = vi.fn();
 
 	beforeEach(() => {
 		render(
 			<Provider store={store}>
-				<MobileSwiper loading={false} newsList={mockNewsList} />
+				<MobileSwiper
+					loading={false}
+					newsList={mockNewsList}
+					totalResults={totalResults}
+					page={page}
+					setPage={setPage}
+				/>
 			</Provider>
 		);
 	});

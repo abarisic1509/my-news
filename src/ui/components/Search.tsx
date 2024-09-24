@@ -16,7 +16,7 @@ const Search: React.FC<SearchProps> = ({ withButton }) => {
 	//reset searchTerm whenever pathname changes
 	useEffect(() => {
 		dispatch(setSearchTerm(""));
-	}, [pathname]);
+	}, [pathname, dispatch]);
 
 	return (
 		<form className="search__form" onSubmit={(e) => e.preventDefault()}>

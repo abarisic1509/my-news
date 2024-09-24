@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { MainWrapper } from "../ui/wrappers";
-import { getApiKey, getBaseUrl } from "../lib/helpers";
+import { getApiKey, getBaseUrl, itemsPerPage } from "../lib/helpers";
 import { useAppSelector } from "../lib/hooks";
 import { ArticleObj, NewsResponse } from "../lib/types";
 import { ArticlesList, FavoritesList, MobileSwiper } from "../ui/containers";
@@ -11,35 +11,47 @@ const Homepage: React.FC = () => {
 	const [showFavorites, setShowFavorites] = useState<boolean>(false);
 
 	const searchTerm = useAppSelector((state) => state.globalData.searchTerm);
+	const [page, setPage] = useState<number>(1);
+	const [totalResults, setTotalResults] = useState<number>(0);
 
 	//refresh newsList wheneve searchTerm changes
 	useEffect(() => {
-		fetchNews();
-	}, [searchTerm]);
-
-	async function fetchNews() {
-		const baseUrl = getBaseUrl();
-		const apiKey = getApiKey();
-		try {
-			const res = await fetch(
-				`${baseUrl}/top-headlines?apiKey=${apiKey}&country=us&pageSize=100&q=${searchTerm}`
-			);
-			if (res.ok) {
-				const data: NewsResponse = await res.json();
-				setNewsList(
-					data.articles
-						.filter(
-							(item) => !item.title.includes("[Removed]") && item.urlToImage
-						)
-						.map((item) => item)
+		async function fetchNews() {
+			const baseUrl = getBaseUrl();
+			const apiKey = getApiKey();
+			try {
+				const res = await fetch(
+					`${baseUrl}/top-headlines?apiKey=${apiKey}&country=us&page=${page}&pageSize=${
+						itemsPerPage + 1
+					}&q=${searchTerm}`
 				);
+				if (res.ok) {
+					const data: NewsResponse = await res.json();
+					setNewsList(
+						data.articles
+							.filter(
+								(item) => !item.title.includes("[Removed]") && item.urlToImage
+							)
+							.map((item) => item)
+					);
+					setTotalResults(data.totalResults);
+				}
+			} catch (error) {
+				console.error(error);
+			} finally {
+				setLoading(false);
 			}
-		} catch (error) {
-			console.error(error);
-		} finally {
-			setLoading(false);
 		}
-	}
+
+		fetchNews();
+	}, [searchTerm, page]);
+
+	//reset showFavorites when searchTerm changes
+	useEffect(() => {
+		if (searchTerm !== "") {
+			setShowFavorites(false);
+		}
+	}, [searchTerm]);
 
 	return (
 		<MainWrapper>
@@ -53,7 +65,13 @@ const Homepage: React.FC = () => {
 				</button>
 			</div>
 			{/* Mobile view */}
-			<MobileSwiper loading={loading} newsList={newsList} />
+			<MobileSwiper
+				loading={loading}
+				newsList={newsList}
+				totalResults={totalResults}
+				page={page}
+				setPage={setPage}
+			/>
 
 			{/* Desktop & Tablet view */}
 			{showFavorites ? (
@@ -64,6 +82,9 @@ const Homepage: React.FC = () => {
 					newsList={newsList}
 					withLatestNews={true}
 					hideOnMobile={true}
+					totalResults={totalResults}
+					page={page}
+					setPage={setPage}
 				/>
 			)}
 		</MainWrapper>

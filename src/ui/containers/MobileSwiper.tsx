@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { Swiper, SwiperClass, SwiperRef, SwiperSlide } from "swiper/react";
 import { Pagination } from "swiper/modules";
 import "swiper/css";
@@ -11,6 +11,9 @@ import FavoritesList from "./FavoritesList";
 interface MobileSwiperProps {
 	loading: boolean;
 	newsList: ArticleObj[];
+	totalResults: number;
+	page: number;
+	setPage: (page: number) => void;
 }
 
 interface PaginationItem {
@@ -33,10 +36,37 @@ const paginationsItems: PaginationItem[] = [
 	},
 ];
 
-const MobileSwiper: React.FC<MobileSwiperProps> = ({ loading, newsList }) => {
+const MobileSwiper: React.FC<MobileSwiperProps> = ({
+	loading,
+	newsList,
+	totalResults,
+	page,
+	setPage,
+}) => {
 	const [instance, setInstance] = useState<SwiperClass | null>(null);
 	const swiperRef = useRef<SwiperRef>(null);
 	const [activeIndex, setActiveIndex] = useState<number>(0);
+
+	//reset page when active slider changes
+	useEffect(() => {
+		if (activeIndex === 0 || activeIndex === 2) {
+			setPage(1);
+		}
+	}, [activeIndex, setPage]);
+
+	//reset scroll position of current slide when page changes
+	useEffect(() => {
+		if (instance && instance.slides) {
+			if (activeIndex === 0 || activeIndex === 2) {
+				const activeSlide = instance?.slides[activeIndex];
+				if (activeSlide) {
+					setTimeout(() => {
+						activeSlide.scrollTo(0, 0);
+					}, 150);
+				}
+			}
+		}
+	}, [instance, page, activeIndex]);
 
 	const handlePaginationClick = (index: number) => {
 		if (swiperRef.current && instance) {
@@ -70,13 +100,19 @@ const MobileSwiper: React.FC<MobileSwiperProps> = ({ loading, newsList }) => {
 				autoplay={false}
 			>
 				<SwiperSlide>
-					<ArticlesList loading={loading} newsList={newsList} />
+					<ArticlesList
+						loading={loading}
+						newsList={newsList}
+						totalResults={totalResults}
+						page={page}
+						setPage={setPage}
+					/>
 				</SwiperSlide>
 				<SwiperSlide>
 					<LatestNews />
 				</SwiperSlide>
 				<SwiperSlide>
-					<FavoritesList />
+					<FavoritesList page={page} setPage={setPage} />
 				</SwiperSlide>
 			</Swiper>
 		</div>

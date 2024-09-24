@@ -24,6 +24,9 @@
 
 		&.mobile-hidden {
 			display: none;
+			& + .pagination {
+				display: none;
+			}
 		}
 	}
 }

@@ -1,0 +1,28 @@
+.pagination {
+	width: 100%;
+	@include useFlex(center, center, row, 1rem);
+	padding-top: 1rem;
+
+	.pagination__btn {
+		font-size: 1.125rem;
+		font-weight: 700;
+		padding: 0.5rem 1rem;
+		background-color: $white;
+		border-radius: 0.25rem;
+
+		&:hover,
+		&:focus,
+		&.active {
+			background-color: $gray;
+		}
+
+		&:disabled {
+			color: rgba($color: $black, $alpha: 0.25);
+			pointer-events: none;
+		}
+
+		&.active {
+			pointer-events: none;
+		}
+	}
+}
