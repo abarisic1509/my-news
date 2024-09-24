@@ -1,0 +1,48 @@
+.topbar {
+	display: flex;
+	width: 100vw;
+	background: url(/topbar-bg.png) center/cover no-repeat;
+	padding: 0.5rem 1rem;
+
+	.topbar__inner {
+		@include useFlex(space-between, center, row, 1.5rem);
+		width: 100%;
+		max-width: 62.5rem;
+		margin: 0 auto;
+		color: $white;
+	}
+
+	.topbar__intro {
+		@include useFlex(start, center, row, 2.5rem);
+
+		.topbar__title {
+			font-size: 1rem;
+			font-weight: bold;
+			letter-spacing: -0.14px;
+			line-height: 1.3125;
+		}
+		.topbar__description {
+			font-size: 0.875rem;
+			letter-spacing: -0.12px;
+			line-height: 1.5;
+		}
+	}
+
+	.topbar__cta {
+		@include useFlex(end, center, row, 1.5rem);
+
+		.topbar__btn {
+			padding: 0.625rem 1.25rem;
+			font-weight: bold;
+			font-size: 0.875rem;
+			line-height: 1.43;
+			border-radius: 0.5rem;
+		}
+	}
+}
+
+@media (max-width: 900px) {
+	.topbar {
+		display: none;
+	}
+}

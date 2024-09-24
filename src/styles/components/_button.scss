@@ -1,0 +1,40 @@
+.btn {
+	display: block;
+
+	&-primary {
+		color: $white;
+		background-color: $orangeDark;
+		border: 2px solid transparent;
+		&:hover,
+		&:focus {
+			background-color: $orangeDarker;
+		}
+		&:focus {
+			border-color: $black;
+		}
+	}
+
+	&-ghost {
+		&:hover,
+		&:focus {
+			background-color: rgba($color: $black, $alpha: 0.15);
+		}
+	}
+	&-neutral {
+		padding: 0.625rem 1.25rem;
+		font-weight: bold;
+		font-size: 0.875rem;
+		line-height: 1.43;
+		border-radius: 0.5rem;
+		color: $black;
+		background-color: $white;
+		border: 2px solid transparent;
+		&:hover,
+		&:focus {
+			background-color: rgba($color: $white, $alpha: 0.9);
+		}
+		&:focus {
+			border-color: $black;
+		}
+	}
+}

@@ -1,0 +1,28 @@
+.main-wrapper {
+	min-height: 100vh;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+	padding-bottom: 2.5rem;
+}
+
+.content-wrapper {
+	display: grid;
+	grid-template-rows: auto 1fr;
+	min-height: 100%;
+	padding: 0 1rem;
+	gap: 1.5rem;
+	width: 100%;
+	max-width: 62.5rem;
+	margin: 0 auto;
+}
+
+@media (min-width: 900px) {
+	.content-wrapper {
+		grid-template-columns: auto 1fr;
+
+		.searchbar {
+			grid-column: 1/-1;
+		}
+	}
+}
